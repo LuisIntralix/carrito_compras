@@ -12,11 +12,13 @@ import * as React from 'react';
 import {Platform, Pressable} from 'react-native';
 import {Provider} from 'react-redux';
 import {NAV_THEME} from '~/lib/constants';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {useColorScheme} from '~/lib/useColorScheme';
 import {store} from '@/redux/store';
 import {ProductSheet} from '@/components/product/ProductSheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {loadCartRequest} from '@/redux/features/cart/cartSlice';
+import {CartIcon} from '@/components/cart/CartIcon';
+import Toast from 'react-native-toast-message';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -36,6 +38,11 @@ export default function RootLayout() {
   const hasMounted = React.useRef(false);
   const {isDarkColorScheme} = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+
+  // Cargar el carrito al iniciar la app
+  React.useEffect(() => {
+    store.dispatch(loadCartRequest());
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     if (hasMounted.current) {
@@ -57,23 +64,17 @@ export default function RootLayout() {
     <Provider store={store}>
       <GestureHandlerRootView style={{flex: 1}}>
         <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-          <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+          {Platform.OS === 'android' && (
+            <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+          )}
           <Stack>
             <Stack.Screen
               name="index"
               options={{
                 headerTitle: 'Tienda',
-                statusBarStyle: isDarkColorScheme ? 'light' : 'dark',
+                statusBarStyle: Platform.OS === 'android' ? (isDarkColorScheme ? 'light' : 'dark') : undefined,
                 headerRight: () => (
-                  <Link href="/cart" asChild>
-                    <Pressable className="mr-4">
-                      <MaterialCommunityIcons
-                        name="cart-outline"
-                        size={24}
-                        color={isDarkColorScheme ? '#fff' : '#000'}
-                      />
-                    </Pressable>
-                  </Link>
+                  <CartIcon color={isDarkColorScheme ? '#fff' : '#000'} />
                 ),
               }}
             />
@@ -81,13 +82,14 @@ export default function RootLayout() {
               name="cart"
               options={{
                 headerTitle: 'Carrito',
-                statusBarStyle: isDarkColorScheme ? 'light' : 'dark',
+                statusBarStyle: Platform.OS === 'android' ? (isDarkColorScheme ? 'light' : 'dark') : undefined,
               }}
             />
 
             <Stack.Screen name="+not-found" />
           </Stack>
           <ProductSheet />
+          <Toast />
         </ThemeProvider>
       </GestureHandlerRootView>
     </Provider>

@@ -11,7 +11,7 @@ function* fetchProducts(): Generator<any, void, AxiosResponse<Product[]>> {
     // Agregar cantidades aleatorias a los productos
     const productsWithQuantity = response.data.map(product => ({
       ...product,
-      quantity: Math.floor(Math.random() * 10) + 1,
+      stock: Math.floor(Math.random() * 10) + 1,
     }));
 
     yield put(setProducts(productsWithQuantity));

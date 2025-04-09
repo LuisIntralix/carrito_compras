@@ -36,11 +36,11 @@ export const ProductItem = ({product}: ProductItemProps) => {
         </Text>
         <Text
           className={`text-xs ${
-            product.quantity && product.quantity < 3
+            product.stock && product.stock < 3
               ? 'text-red-500'
               : 'text-gray-600'
           }`}>
-          {product.quantity} disponibles
+          {product.stock} disponibles
         </Text>
       </View>
     </Pressable>

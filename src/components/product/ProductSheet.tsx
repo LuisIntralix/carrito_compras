@@ -10,6 +10,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import {useAppDispatch, useAppSelector} from '@/redux/hooks';
 import {closeProductSheet} from '@/redux/features/productSheet/productSheetSlice';
+import {addToCartRequest} from '@/redux/features/cart/cartSlice';
+import Toast from 'react-native-toast-message';
 
 export const ProductSheet = () => {
   const dispatch = useAppDispatch();
@@ -80,11 +82,11 @@ export const ProductSheet = () => {
               </Text>
               <Text
                 className={`text-base ${
-                  selectedProduct.quantity && selectedProduct.quantity < 3
+                  selectedProduct.stock && selectedProduct.stock < 3
                     ? 'text-red-500'
                     : 'text-gray-600'
                 }`}>
-                {selectedProduct.quantity} disponibles
+                {selectedProduct.stock} disponibles
               </Text>
             </View>
 
@@ -111,7 +113,17 @@ export const ProductSheet = () => {
 
             {/* Botón de Agregar al carrito */}
             <Button
-              onPress={() => {}}
+              onPress={() => {
+                dispatch(
+                  addToCartRequest({product: selectedProduct, quantity: 1}),
+                );
+                dispatch(closeProductSheet());
+                Toast.show({
+                  type: 'success',
+                  text1: selectedProduct!.title,
+                  text2: 'El producto se ha agregado correctamente',
+                });
+              }}
               className="bg-green-600 py-3 rounded-lg items-center justify-center">
               <Text className="text-white font-bold text-lg">
                 Agregar al carrito
