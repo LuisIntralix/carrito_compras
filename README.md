@@ -1,50 +1,49 @@
-# Welcome to your Expo app 👋
+# Carrito de Compras con React Native y Expo 🛍️
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Autor:** Luis Eduardo Rodríguez Becerra
 
-## Get started
+Este es un proyecto de [Expo](https://expo.dev) creado con [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) que implementa un carrito de compras móvil. La aplicación permite a los usuarios:
 
-1. Install dependencies
+- Ver una lista de productos disponibles
+- Ver detalles de cada producto
+- Agregar productos al carrito
+- Gestionar las cantidades en el carrito
+- Persistencia de datos del carrito
+
+## Tecnologías Principales
+
+- **React Native**: Framework principal para el desarrollo móvil
+- **Expo**: Plataforma para simplificar el desarrollo de React Native
+- **Redux Toolkit**: Manejo del estado de la aplicación
+- **Redux Saga**: Manejo de efectos secundarios (llamadas API, persistencia)
+- **Expo Router**: Navegación basada en archivos
+- **Expo SecureStore**: Almacenamiento seguro para la persistencia
+- **NativeWind**: Estilos con Tailwind CSS para React Native
+
+## Comenzar
+
+1. Instalar dependencias
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Iniciar la aplicación
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+En la salida, encontrarás opciones para abrir la aplicación en:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [Build de desarrollo](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Emulador de Android](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [Simulador de iOS](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), un entorno limitado para probar el desarrollo de aplicaciones con Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Aprende más
 
-## Get a fresh project
+Para aprender más sobre el desarrollo con Expo, consulta los siguientes recursos:
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Documentación de Expo](https://docs.expo.dev/): Aprende los fundamentos o profundiza con nuestras [guías](https://docs.expo.dev/guides).
+- [Tutorial de Expo](https://docs.expo.dev/tutorial/introduction/): Sigue un tutorial paso a paso para crear un proyecto que funcione en Android, iOS y web.
